@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Diario de Gastos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="Multimedia/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Multimedia/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="Multimedia/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="Multimedia/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" href="Multimedia/apple-touch-icon.png">
+    <style>
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: "Lobster", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+      
+        header {
+            background-color: #000000;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        #homeCarousel {
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        #infoBlock {
+            display: none;
+            background-color: white;
+            color: black;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .btn-black {
+            background-color: black;
+            color: white;
+            border: none;
+        }
+        .btn-black:hover {
+            background-color: #06c313;
+        }
+        .total-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    
+        #infoBlock .row {
+            justify-content: center; 
+        }
+
+        #infoBlock .col-md-6 {
+            padding-left: 5px; /* 
+            padding-right: 5px;
+        }
+
+        #infoBlock img {
+            max-width: 150px; /* Tamaño máximo de las fotos */
+            margin-bottom: 5px; 
+        }
+        @media (min-width: 992px) { 
+    #infoBlock .row {
+        gap: 0; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="lobster-regular">
+        <h1>DailySpend Web</h1>
+        <p>Registra y gestiona tus gastos personales</p>
+    </header>
+
+    <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Multimedia/banner1.png" class="d-block w-100" alt="Registrar Gastos">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Registra tus gastos fácilmente</h5>
+                    <p>Agrega información sobre tus gastos diarios en pocos pasos.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Multimedia/banner2.png" class="d-block w-100" alt="Gestionar Gastos">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Gestiona tus datos</h5>
+                    <p>Edita y elimina información de manera rápida y sencilla.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Multimedia/banner3.png" class="d-block w-100" alt="Consulta Historial">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Consulta tu historial</h5>
+                    <p>Revisa y analiza tus gastos registrados con facilidad.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <main class="container my-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Agregar un gasto</h2>
+                <form id="gastoForm">
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" id="descripcion" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="monto" class="form-label">Monto</label>
+                        <input type="number" id="monto" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" id="fecha" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-black">Añadir Gasto</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h2>Lista de Gastos</h2>
+                <ul id="listaGastos" class="list-group"></ul>
+            </div>
+        </div>
+
+        <div class="total-section">
+            <h3>Total de Gastos</h3>
+            <p id="totalGastos" class="fw-bold">$0</p>
+            <button class="btn btn-black" onclick="calcularTotal()">Consultar Total a Pagar</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mi Diario de Gastos</p>
+        <button class="btn btn-secondary btn-sm" onclick="mostrarInfo()">Info</button>
+        <div id="infoBlock">
+            <h5>Información del Proyecto</h5>
+            <p><strong>Carrera:</strong>   Diseño Multimedial</p>
+            <p><strong>Materia:</strong>   Diseño y Programación Web I</p>
+            
+            <h6>Integrantes:</h6>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <p><strong>Federico Arce</strong> </p>
+                    <img src="Multimedia/fede perfil.png" alt="Foto de Juan Pérez" class="img-thumbnail">
+                </div>
+                <div class="col-md-6 text-center">
+                    <p><strong>Benito</strong> </p>
+                    <img src="Multimedia/Beni perfil.png" alt="Foto de María García" class="img-thumbnail">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const listaGastos = document.getElementById('listaGastos');
+        const formulario = document.getElementById('gastoForm');
+        const infoBlock = document.getElementById('infoBlock');
+        const totalGastos = document.getElementById('totalGastos');
+
+        // Cargar gastos guardados
+        document.addEventListener('DOMContentLoaded', cargarGastos);
+
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const descripcion = document.getElementById('descripcion').value;
+            const monto = document.getElementById('monto').value;
+            const fecha = document.getElementById('fecha').value;
+
+            if (descripcion && monto && fecha) {
+                const gasto = { descripcion, monto: parseFloat(monto), fecha };
+                guardarGasto(gasto);
+                mostrarGasto(gasto);
+                formulario.reset();
+            }
+        });
+
+        function guardarGasto(gasto) {
+            let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+            gastos.push(gasto);
+            localStorage.setItem('gastos', JSON.stringify(gastos));
+        }
+
+        function cargarGastos() {
+            const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+            gastos.forEach(mostrarGasto);
+        }
+
+        function mostrarGasto(gasto) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                ${gasto.descripcion} - $${gasto.monto} <small>(${gasto.fecha})</small>
+                <button class="btn btn-danger btn-sm" onclick="eliminarGasto('${gasto.descripcion}')">X</button>
+            `;
+            listaGastos.appendChild(li);
+        }
+
+        function eliminarGasto(descripcion) {
+            let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+            gastos = gastos.filter(gasto => gasto.descripcion !== descripcion);
+            localStorage.setItem('gastos', JSON.stringify(gastos));
+            listaGastos.innerHTML = '';
+            gastos.forEach(mostrarGasto);
+        }
+
+        function calcularTotal() {
+            const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+            const total = gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
+            totalGastos.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function mostrarInfo() {
+            infoBlock.style.display = infoBlock.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

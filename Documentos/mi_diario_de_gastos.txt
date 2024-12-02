@@ -1,0 +1,15 @@
+La funcionalidad principal de la aplicación es gestionar y organizar gastos personales de manera local y sencilla.
+
+Funcionalidades de la App
+
+Registrar Gastos:
+
+Los usuarios pueden ingresar detalles de un gasto mediante un formulario que incluye:
+Descripción del gasto.
+Monto del gasto.
+Fecha en que se realizó.
+
+Almacenar Gastos:
+
+Los datos ingresados se guardan en el navegador del usuario utilizando localStorage.
+Esto asegura que los datos persistan incluso al cerrar y volver a abrir la página.

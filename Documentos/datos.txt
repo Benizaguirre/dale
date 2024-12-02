@@ -1,0 +1,17 @@
+CARRERA: Diseño Multimedial
+
+MATERIA: Diseño y Programación Web I
+
+AÑO: 2024
+
+TURNO: Noche
+
+COMISIÓN: curso DMN3AV
+
+CARACTER DE ENTREGA: TP
+
+INTEGRANTES: Federico Arce, Benito Benizaguirre
+
+DOCENTE: Prof. Sergio Daniel Medina
+
+LINK A LA WEB

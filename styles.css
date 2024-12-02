@@ -1,0 +1,99 @@
+body {
+    background-color: #f8f9fa;
+    font-family: "Lobster", sans-serif;
+}
+
+header {
+    background-color: #000000;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+#homeCarousel {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#infoBlock {
+    display: none;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.btn-black {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.btn-black:hover {
+    background-color: #0dd331;
+}
+
+.total-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#infoBlock img {
+    max-width: 100px;
+    margin-bottom: 5px;
+}
+
+footer #infoBlock .row {
+    justify-content: center;
+}
+
+footer #infoBlock .col-md-6 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+@media (min-width: 992px) {
+    footer #infoBlock .row {
+        gap: 0;
+    }
+}
+.btn-secondary:hover {
+    background-color: #0dd331; 
+    color: white; 
+}
+
+#infoBlock {
+    display: none;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+}
+
+#infoBlock.activo {
+    display: block;
+    max-height: 500px; /* Ajusta según el contenido */
+    opacity: 1;
+}
+
+#infoBlock img {
+    max-width: 100px;
+    margin-bottom: 5px;
+    border: 3px solid #0dd331; /* Color azul al contorno */
+    border-radius: 50%; /* Bordes redondeados para un efecto circular */
+}
